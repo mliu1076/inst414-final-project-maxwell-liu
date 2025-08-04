@@ -10,7 +10,7 @@ Source: https://dumps.wikimedia.org/other/clickstream/2020-06/
 
 Techniques employed: Removed N/A values and added placeholder values while cleaning and transforming data
 
-Outputs: Two cleaned clickstream datasets stored in the processed section/folder of the data folder
+Outputs: Models and visualizations related to the business problem and datasets
 # Setup Instructions
 
 To clone this repository, run the git command below in your SSH client:
