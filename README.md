@@ -65,9 +65,7 @@ inst414-final-project-maxwell-liu
 
 ├── analysis/
 
-│   ├── model.py - creates and saves analytical models based off business problem and datasets
-
-│   ├── evaluate.py
+│   ├── evaluate_model.py - creates and saves analytical models based off business problem and datasets
 
 ├── vis/
 
