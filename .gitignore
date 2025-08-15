@@ -1,1 +1,5 @@
 main.py
+"data/databases"
+__pycache__/
+*.pyc
+"data/reference-tables/data_dictionary_clickstream-enwiki-2025-06-processed.xlsx" 
