@@ -2,19 +2,21 @@ import pandas as pd
 import plotly.graph_objects as go
 import os
 
+
+PARQUET_PATH = "data/processed/wikip_cleaned.parquet"  # Output from ETL
+OUTPUT_DIR = "data/outputs"
+
 def generate_wikipedia_sankey(wikip_df):
     """
     Generates a Sankey diagram showing the navigation flow between Wikipedia pages.
 
     Parameters:
-    - wikip_df: DataFrame with columns ['prev', 'curr', 'n']
+    - wikip_df: DataFrame with columns ['prev', 'curr', 'type', 'n']
     """
 
-    output_dir="data/outputs"
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    os.makedirs(output_dir, exist_ok=True)
-
-    # ensure necessary columns exist
+    # checks if columns exist
     required_cols = {'prev', 'curr', 'type', 'n'}
     if not required_cols.issubset(wikip_df.columns):
         raise ValueError(f"DataFrame must contain the following columns: {required_cols}")
@@ -53,11 +55,21 @@ def generate_wikipedia_sankey(wikip_df):
     )])
 
     fig.update_layout(
-        title_text="Wikipedia Clickstream Navigation (colored by type)",
+        title_text="Wikipedia Clickstream Navigation (first 100 rows, colored by type)",
         font_size=10
     )
 
-    # saves file
-    output_path = os.path.join(output_dir, "wikipedia_sankey_colored.html")
+    # save file
+    output_path = os.path.join(OUTPUT_DIR, "wikipedia_sankey_colored.html")
     fig.write_html(output_path)
-    print(" Sankey diagram saved to: {output_path}")
+    print(f"Sankey diagram saved to: {output_path}")
+
+
+# if __name__ == "__main__":
+#     # loads the first 100 rows from Parquet
+#     wikip_df = pd.read_parquet(PARQUET_PATH).head(100)
+
+#     # Ensure columns are correctly named
+#     wikip_df.columns = ['prev', 'curr', 'type', 'n']
+
+#     generate_wikipedia_sankey(wikip_df)
