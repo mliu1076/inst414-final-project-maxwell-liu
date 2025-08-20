@@ -1,0 +1,10 @@
+2025-08-20 17:08:29,094 - INFO - ETL process started.
+2025-08-20 17:08:29,100 - ERROR - Error during data extraction.
+Traceback (most recent call last):
+  File "c:/Users/Maxwe/Desktop/inst414-final-project-maxwell-liu/main.py", line 26, in main
+    extract_data()
+  File "c:\Users\Maxwe\Desktop\inst414-final-project-maxwell-liu\etl\extract.py", line 15, in extract_data
+    conn = sqlite3.connect(db_path)
+sqlite3.OperationalError: unable to open database file
+2025-08-20 17:10:57,999 - INFO - ETL process started.
+2025-08-20 17:17:55,491 - INFO - Data extraction completed successfully.

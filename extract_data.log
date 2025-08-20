@@ -1,0 +1,104 @@
+2025-08-20 17:29:53,222 - INFO - ETL process started.
+2025-08-20 17:33:19,010 - INFO - Successfully read the first 10,000 rows of the Wikipedia clickstream dataset
+2025-08-20 17:33:25,141 - INFO - Added Wikipedia dataset (first 10,000 rows) to the database
+2025-08-20 17:33:26,458 - INFO - Files in ZIP: ['e-shop clothing 2008.csv', 'e-shop clothing 2008 data description.txt']
+2025-08-20 17:33:26,594 - INFO - Successfully loaded shopping clickstream dataset
+2025-08-20 17:33:26,822 - INFO - Data has been saved to the 'data/raw/' directory.
+2025-08-20 17:33:26,826 - INFO - Data extraction completed successfully.
+2025-08-20 17:33:27,567 - INFO - Data transformation completed successfully.
+2025-08-20 17:33:28,419 - INFO - Data loaded successfully: None, shopping data shape: (165474, 14)
+2025-08-20 17:33:28,794 - ERROR - Error reading or preparing Wikipedia parquet data.
+Traceback (most recent call last):
+  File "c:/Users/Maxwe/Desktop/inst414-final-project-maxwell-liu/main.py", line 47, in main
+    wikip_df = pd.read_parquet(wiki_parquet).head(100)
+  File "C:\Users\Maxwe\Desktop\inst414-final-project-maxwell-liu\.venv\lib\site-packages\pandas\io\parquet.py", line 509, in read_parquet
+    return impl.read(
+  File "C:\Users\Maxwe\Desktop\inst414-final-project-maxwell-liu\.venv\lib\site-packages\pandas\io\parquet.py", line 227, in read
+    pa_table = self.api.parquet.read_table(
+  File "C:\Users\Maxwe\Desktop\inst414-final-project-maxwell-liu\.venv\lib\site-packages\pyarrow\parquet\core.py", line 1793, in read_table
+    dataset = ParquetDataset(
+  File "C:\Users\Maxwe\Desktop\inst414-final-project-maxwell-liu\.venv\lib\site-packages\pyarrow\parquet\core.py", line 1371, in __init__
+    self._dataset = ds.dataset(path_or_paths, filesystem=filesystem,
+  File "C:\Users\Maxwe\Desktop\inst414-final-project-maxwell-liu\.venv\lib\site-packages\pyarrow\dataset.py", line 814, in dataset
+    raise TypeError(
+TypeError: Expected a path-like, list of path-likes or a list of Datasets instead of the given type: NoneType
+2025-08-20 17:40:17,213 - INFO - ETL process started.
+2025-08-20 17:44:15,706 - INFO - Successfully read the first 10,000 rows of the Wikipedia clickstream dataset
+2025-08-20 17:44:15,772 - INFO - Added Wikipedia dataset (first 10,000 rows) to the database
+2025-08-20 17:44:17,296 - INFO - Files in ZIP: ['e-shop clothing 2008.csv', 'e-shop clothing 2008 data description.txt']
+2025-08-20 17:44:17,421 - INFO - Successfully loaded shopping clickstream dataset
+2025-08-20 17:44:17,613 - INFO - Data has been saved to the 'data/raw/' directory.
+2025-08-20 17:44:17,613 - INFO - Data extraction completed successfully.
+2025-08-20 17:44:18,503 - INFO - Data transformation completed successfully.
+2025-08-20 17:44:18,814 - INFO - Data loaded successfully: data/processed/wikip_cleaned.parquet, shopping data shape: (165474, 14)
+2025-08-20 17:44:18,963 - INFO - Wikipedia parquet file read successfully, shape: (100, 4)
+2025-08-20 17:44:21,013 - INFO - Wikipedia Sankey diagram generated successfully.
+2025-08-20 17:44:22,590 - INFO - Wikipedia analysis completed successfully.
+2025-08-20 17:44:26,848 - INFO - Shopping analysis completed successfully.
+2025-08-20 17:44:26,848 - INFO - ETL process completed.
+2025-08-20 17:55:24,947 - INFO - ETL process started.
+2025-08-20 17:58:55,683 - INFO - Successfully read the first 10,000 rows of the Wikipedia clickstream dataset
+2025-08-20 17:58:55,736 - INFO - Added Wikipedia dataset (first 10,000 rows) to the database
+2025-08-20 17:58:57,436 - INFO - Files in ZIP: ['e-shop clothing 2008.csv', 'e-shop clothing 2008 data description.txt']
+2025-08-20 17:58:57,686 - INFO - Successfully loaded shopping clickstream dataset
+2025-08-20 17:58:58,087 - INFO - Data has been saved to the 'data/raw/' directory.
+2025-08-20 17:58:58,087 - INFO - Data extraction completed successfully.
+2025-08-20 17:58:58,087 - INFO - Processed directory 'data/processed/' ensured.
+2025-08-20 17:58:58,087 - INFO - Successfully connected to the database: data/databases/wikip_cs.db
+2025-08-20 17:58:58,122 - INFO - Successfully loaded data from table 'wikip_cs' in the database.
+2025-08-20 17:58:58,351 - INFO - Successfully loaded e-shop data.
+2025-08-20 17:58:58,362 - INFO - Columns in wikip_df renamed successfully.
+2025-08-20 17:58:58,444 - INFO - Cleaned wikip_df saved to database table 'wikip_cleaned'.
+2025-08-20 17:58:58,495 - INFO - Cleaned wikip_df saved to CSV in the processed directory.
+2025-08-20 17:58:59,551 - INFO - Transformed e-shop data saved to CSV in the processed directory.
+2025-08-20 17:58:59,556 - INFO - Data transformation completed successfully.
+2025-08-20 17:58:59,558 - INFO - Processed directory 'data/processed/' ensured.
+2025-08-20 17:58:59,560 - INFO - Successfully connected to the database: data/databases/wikip_cs.db
+2025-08-20 17:58:59,600 - INFO - Successfully loaded data from table 'wikip_cleaned' in the database.
+2025-08-20 17:58:59,600 - INFO - Columns in the Wikipedia DataFrame renamed successfully.
+2025-08-20 17:58:59,702 - INFO - Wikipedia DataFrame saved as Parquet file: data/processed/wikip_cleaned.parquet
+2025-08-20 17:58:59,939 - INFO - E-shop dataset loaded successfully from 'e-shop-clothing-2008-processed.csv'.
+2025-08-20 17:58:59,939 - INFO - Data loaded successfully: data/processed/wikip_cleaned.parquet, shopping data shape: (165474, 14)
+2025-08-20 17:59:00,073 - INFO - Wikipedia parquet file read successfully, shape: (100, 4)
+2025-08-20 17:59:00,073 - INFO - Output directory 'data/outputs' ensured.
+2025-08-20 17:59:00,073 - INFO - DataFrame contains the required columns: {'type', 'curr', 'prev', 'n'}
+2025-08-20 17:59:00,079 - INFO - Data transformation for Sankey diagram completed.
+2025-08-20 17:59:00,332 - INFO - Sankey diagram created successfully.
+2025-08-20 17:59:00,396 - INFO - Sankey diagram saved to: data/outputs\wikipedia_sankey_colored.html
+2025-08-20 17:59:00,396 - INFO - Wikipedia Sankey diagram generated successfully.
+2025-08-20 17:59:01,043 - INFO - Wikipedia analysis completed successfully.
+2025-08-20 17:59:07,710 - INFO - Shopping analysis completed successfully.
+2025-08-20 17:59:07,710 - INFO - ETL process completed.
+2025-08-20 18:00:57,101 - INFO - ETL process started.
+2025-08-20 18:04:25,460 - INFO - Successfully read the first 10,000 rows of the Wikipedia clickstream dataset
+2025-08-20 18:04:25,485 - INFO - Added Wikipedia dataset (first 10,000 rows) to the database
+2025-08-20 18:04:27,229 - INFO - Files in ZIP: ['e-shop clothing 2008.csv', 'e-shop clothing 2008 data description.txt']
+2025-08-20 18:04:27,346 - INFO - Successfully loaded shopping clickstream dataset
+2025-08-20 18:04:27,547 - INFO - Data has been saved to the 'data/raw/' directory.
+2025-08-20 18:04:27,553 - INFO - Data extraction completed successfully.
+2025-08-20 18:04:27,554 - INFO - Processed directory 'data/processed/' ensured.
+2025-08-20 18:04:27,557 - INFO - Successfully connected to the database: data/databases/wikip_cs.db
+2025-08-20 18:04:27,575 - INFO - Successfully loaded data from table 'wikip_cs' in the database.
+2025-08-20 18:04:27,743 - INFO - Successfully loaded e-shop data.
+2025-08-20 18:04:27,743 - INFO - Columns in wikip_df renamed successfully.
+2025-08-20 18:04:27,798 - INFO - Cleaned wikip_df saved to database table 'wikip_cleaned'.
+2025-08-20 18:04:27,820 - INFO - Cleaned wikip_df saved to CSV in the processed directory.
+2025-08-20 18:04:28,325 - INFO - Transformed e-shop data saved to CSV in the processed directory.
+2025-08-20 18:04:28,342 - INFO - Data transformation completed successfully.
+2025-08-20 18:04:28,342 - INFO - Processed directory 'data/processed/' ensured.
+2025-08-20 18:04:28,342 - INFO - Successfully connected to the database: data/databases/wikip_cs.db
+2025-08-20 18:04:28,364 - INFO - Successfully loaded data from table 'wikip_cleaned' in the database.
+2025-08-20 18:04:28,365 - INFO - Columns in the Wikipedia DataFrame renamed successfully.
+2025-08-20 18:04:28,446 - INFO - Wikipedia DataFrame saved as Parquet file: data/processed/wikip_cleaned.parquet
+2025-08-20 18:04:28,563 - INFO - E-shop dataset loaded successfully from 'e-shop-clothing-2008-processed.csv'.
+2025-08-20 18:04:28,563 - INFO - Data loaded successfully: data/processed/wikip_cleaned.parquet, shopping data shape: (165474, 14)
+2025-08-20 18:04:28,670 - INFO - Wikipedia parquet file read successfully, shape: (100, 4)
+2025-08-20 18:04:28,670 - INFO - Output directory 'data/outputs' ensured.
+2025-08-20 18:04:28,670 - INFO - DataFrame contains the required columns: {'n', 'curr', 'prev', 'type'}
+2025-08-20 18:04:28,673 - INFO - Data transformation for Sankey diagram completed.
+2025-08-20 18:04:28,826 - INFO - Sankey diagram created successfully.
+2025-08-20 18:04:28,866 - INFO - Sankey diagram saved to: data/outputs\wikipedia_sankey_colored.html
+2025-08-20 18:04:28,866 - INFO - Wikipedia Sankey diagram generated successfully.
+2025-08-20 18:04:29,273 - INFO - Wikipedia analysis completed successfully.
+2025-08-20 18:04:32,738 - INFO - Shopping analysis completed successfully.
+2025-08-20 18:04:32,739 - INFO - ETL process completed.
