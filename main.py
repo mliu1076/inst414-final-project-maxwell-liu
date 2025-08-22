@@ -4,10 +4,10 @@ import os
 from etl.extract import extract_data
 from etl.transform import transform_data
 from etl.load import load_data
-from vis.visualizations import generate_wikipedia_sankey
+from vis.visualizations import generate_wikipedia_sankey, generate_wikipedia_heatmap, create_shopping_visualizations
 from analysis.evaluate_model import analyze_shopping, analyze_wikipedia
 
-# === Error logging ===
+# sets up error logging
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 LOG_FILE = os.path.join(LOG_DIR, "etl_process.log")
@@ -20,6 +20,12 @@ logging.basicConfig(
 )
 
 def main():
+    """
+    Main function of the project.
+
+    Runs the full code package end-to-end for this project. This includes running
+    the ETL pipeline, running analysis using evaluation metrics, and creating data visualizations.
+    """
     logging.info("ETL process started.")
 
     try:
@@ -62,6 +68,17 @@ def main():
         logging.info("Wikipedia Sankey diagram generated successfully.")
     except Exception as e:
         logging.exception("Error generating Wikipedia Sankey diagram.")
+    try:
+        generate_wikipedia_heatmap(wikip_df)
+        logging.info("Wikipedia Heatmap diagram generated successfully.")
+    except Exception as e:
+        logging.exception("Error generating Wikipedia Heatmap diagram.")
+    
+    try:
+        create_shopping_visualizations()
+        logging.info("Shopping visualizations (Heatmap and Sankey Diagram) generated successfully.")
+    except Exception as e:
+        logging.exception("Error generating shopping diagrams.")
 
     try:
         analyze_wikipedia(wikip_df)

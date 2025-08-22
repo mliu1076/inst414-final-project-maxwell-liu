@@ -19,6 +19,7 @@ OUTPUT_DIR = "data/outputs"
 def generate_sankey(df, source_col, target_col, title):
     """
     Generates a Sankey diagram for the flow between source_col and target_col for the shopping dataset.
+    
     Parameters:
     - df: DataFrame containing [source_col, target_col, 'session_id'].
     - source_col: The column name to use as the source nodes
