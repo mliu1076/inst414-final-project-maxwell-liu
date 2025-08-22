@@ -10,11 +10,23 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 ])
 
 def load_data():
+    """
+    Load step of the ETL pipeline.
+
+    This function connects to the database and performs the following tasks:
+    1. Queries and loads the Wikipedia dataset from the database into a DataFrame.
+    2. Adds and names columns for the Wikipedia DataFrame.
+    3. Saves the processed Wikipedia DataFrame as a Parquet file for efficient storage.
+    4. Loads the previously extracted shopping dataset from the CSV file into a DataFrame.
+
+    Returns:
+    - parquet_path: The file path to the generated Parquet file containing the processed/cleaned Wikipedia data.
+    - shop_df: The cleaned shopping dataset
+    """
     processed_dir = 'data/processed/'
     db_path = "data/databases/wikip_cs.db"
     wikip_parquet = "wikip_cleaned.parquet"
     wikip_table = 'wikip_cleaned'
-    wiki_parquet = ''
     
     # checks if the processed directory exists
     try:

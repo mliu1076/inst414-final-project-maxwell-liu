@@ -10,6 +10,13 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 ])
 
 def transform_data():
+    """
+    Transform function of the ETL pipeline.
+
+    This function connects to the database and performs data cleaning 
+    and transformation tasks for both the Wikipedia and shopping datasets.
+    It also performs EDA analysis.
+    """
     # file paths
     raw_dir = 'data/raw/'
     processed_dir = 'data/processed/'
