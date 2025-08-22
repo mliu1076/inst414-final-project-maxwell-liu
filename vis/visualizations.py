@@ -18,7 +18,12 @@ OUTPUT_DIR = "data/outputs"
 
 def generate_sankey(df, source_col, target_col, title):
     """
-    Generates a Sankey diagram for the flow between source_col and target_col.
+    Generates a Sankey diagram for the flow between source_col and target_col for the shopping dataset.
+    Parameters:
+    - df: DataFrame containing [source_col, target_col, 'session_id'].
+    - source_col: The column name to use as the source nodes
+    - target_col: The column name to use as the target nodes
+    - title: Title for the Sankey diagram
     """
     try:
         logging.info(f"Generating Sankey diagram for {title}...")
@@ -80,17 +85,35 @@ def create_heatmap(data, title, x_label, y_label):
     """
     Creates and displays a heatmap for the given data.
     """
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(data, annot=True, cmap="Blues", cbar_kws={'label': 'Interaction Count'})
-    plt.title(title)
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-    plt.show()
+    n_rows, n_cols = data.shape
 
+    # dynamically scales figure size with data size
+    plt.figure(figsize=(max(10, n_cols * 0.6), max(8, n_rows * 0.3)))
+
+    # scales font size to avoid overlap
+    annot_font_size = max(6, 12 - int(max(n_rows, n_cols) / 10))
+
+    sns.heatmap(
+        data,
+        annot=True,
+        fmt="d", 
+        cmap="Blues",
+        cbar_kws={'label': 'Interaction Count'},
+        annot_kws={"size": annot_font_size}
+    )
+
+    plt.title(title, fontsize=14)
+    plt.xlabel(x_label, fontsize=12)
+    plt.ylabel(y_label, fontsize=12)
+
+    plt.yticks(rotation=0, ha="right")
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+    plt.show()
 
 def create_shopping_visualizations():
     """
-    Creates Sankey diagrams and heatmaps for visualizing shopping sessions.
+    Creates Sankey diagrams and heatmaps for shopping clickstream dataset.
     """
     try:
         logging.info("Loading data...")
@@ -122,23 +145,45 @@ def create_shopping_visualizations():
 
     location_mapping = {1:'Top Left', 2:'Top Middle', 3:'Top Right',
                         4:'Bottom Left', 5:'Bottom Middle', 6:'Bottom Right'}
-
+    price_two_mapping = {1:'Above Average', 2:'Below Average'}
     # maps numeric codes to text readable categorical labels
     df['country'] = df['country'].map(country_mapping)
     df['page_1_main_category'] = df['page_1_main_category'].map(category_mapping)
     df['colour'] = df['colour'].map(colour_mapping)
     df['location'] = df['location'].map(location_mapping)
+    df['price_2'] = df['price_2'].map(price_two_mapping)
 
     try:
-        # Heatmaps
+        # generates heatmaps
         logging.info("Creating heatmap for Country vs. Main Category...")
         country_category_data = df.groupby(['country', 'page_1_main_category']).size().unstack(fill_value=0)
         create_heatmap(country_category_data, 'Country vs. Main Category', 'Main Category', 'Country')
 
         logging.info("Creating heatmap for Main Category vs. Clothing Model...")
-        category_model_data = df.groupby(['page_1_main_category', 'page_2_clothing_model']).size().unstack(fill_value=0)
-        create_heatmap(category_model_data, 'Main Category vs. Clothing Model', 'Clothing Model', 'Main Category')
+        top_n = 20
+        top_models = (
+            df['page_2_clothing_model']
+            .value_counts()
+            .nlargest(top_n)
+            .index
+        )
 
+        # flter dataframe to top 20 models
+        df_top = df[df['page_2_clothing_model'].isin(top_models)]
+
+        # group by filtered column
+        category_model_data = (
+            df_top.groupby(['page_1_main_category', 'page_2_clothing_model'])
+            .size()
+            .unstack(fill_value=0)
+        )
+
+        create_heatmap(
+            category_model_data,
+            f'Main Category vs. Clothing Model (Top {top_n})',
+            'Clothing Model',
+            'Main Category'
+        )
         logging.info("Creating heatmap for Location vs. Main Category...")
         location_category_data = df.groupby(['location', 'page_1_main_category']).size().unstack(fill_value=0)
         create_heatmap(location_category_data, 'Location vs. Main Category', 'Main Category', 'Location')
@@ -230,6 +275,7 @@ def generate_wikipedia_sankey(wikip_df):
             font_size=10
         )
         logging.info("Sankey diagram created successfully.")
+        fig.show()
     except Exception as e:
         logging.error(f"Error creating Sankey diagram: {e}")
         raise
@@ -246,7 +292,6 @@ def generate_wikipedia_sankey(wikip_df):
 def generate_wikipedia_heatmap(wikip_df, top_n=25):
     """
     Generates a heatmap showing the interactions between Wikipedia pages, limited to the top N articles.
-    Filters out zero interactions for a cleaner visualization.
 
     Parameters:
     - wikip_df: DataFrame with columns ['prev', 'curr', 'type', 'n']
