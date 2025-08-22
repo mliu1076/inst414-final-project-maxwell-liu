@@ -19,7 +19,6 @@ OUTPUT_DIR = "data/outputs"
 def generate_sankey(df, source_col, target_col, title):
     """
     Generates a Sankey diagram for the flow between source_col and target_col.
-    Assumes df already has mapped categorical labels (no numeric codes).
     """
     try:
         logging.info(f"Generating Sankey diagram for {title}...")
