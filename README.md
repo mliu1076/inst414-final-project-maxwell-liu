@@ -1,16 +1,17 @@
 # Project Overview
-Business Problem: To improve user engagement and user experience on digital platforms by analyzing and creating visualizations of clickstream data.
+Business Problem: To improve UI/UX, user engagement, user experience and user conversion rates on digital platforms by analyzing and creating visualizations of clickstream data.
 
 Datasets used: 
 * A 2008 clickstream dataset from an online store offering clothing for pregnant women 
 Source: https://archive.ics.uci.edu/dataset/553/clickstream+data+for+online+shopping
 
-* Clickstream data for June 2025 for Wikipedia from a Wikimedia data dump
+* English Clickstream data for June 2025 for Wikipedia from a Wikimedia data dump
 Source: https://dumps.wikimedia.org/other/clickstream/2020-06/
 
-Techniques employed: Removed N/A values and added placeholder values while cleaning and transforming data
+Techniques employed: Removed N/A values and added placeholder values while cleaning and transforming data. Used EDA, Descriptive Analytics and Sequence Modeling through Markov Chains during analysis. 
 
-Outputs: Models and visualizations related to the business problem and datasets
+Outputs: A Sankey diagram and a Heatmap diagram for the Wikipedia dataset, 4 Sankey Diagrams and 5 Heatmaps for the online shopping dataset
+
 # Setup Instructions
 
 To clone this repository, run the git command below in your SSH client:
@@ -41,13 +42,13 @@ python main.py
 
 # Code Package Structure
 
-Here is the following structure of this package
+Here is the following structure of this package:
 
 inst414-final-project-maxwell-liu
 
 ├── data/
 
-│   ├── extracted/ - stores extracted data from the sources (flat files in this case)
+│   ├── extracted/ - stores extracted data from the online sources (raw data)
 
 │   ├── processed/ - stores transformed and cleaned data
 
@@ -57,19 +58,19 @@ inst414-final-project-maxwell-liu
 
 ├── etl/ - each py file is named after the respective step in the ETL process
 
-│   ├── extract.py
+│   ├── extract.py - extracts and downloads files from their online source also sets up SQLite database
 
-│   ├── transform.py
+│   ├── transform.py - cleans datasets and places them in the database
 
-│   ├── load.py
+│   ├── load.py - loads the data for use in main.py
 
 ├── analysis/
 
-│   ├── evaluate_model.py - creates and saves analytical models based off business problem and datasets
+│   ├── evaluate_model.py - creates and saves analytical models (EDA, Descriptive Analytics, Sequence Modeling through Markov Chains)
 
 ├── vis/
 
-│   ├── visualizations.py - this file creates visualizations
+│   ├── visualizations.py - creates Sankey and Heatmap diagram visualizations
 
 ├── main.py - this file will run the entire project workflow
 
