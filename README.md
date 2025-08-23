@@ -10,7 +10,7 @@ Source: https://dumps.wikimedia.org/other/clickstream/2020-06/
 
 Techniques employed: Removed N/A values and added placeholder values while cleaning and transforming data. Used EDA, Descriptive Analytics and Sequence Modeling through Markov Chains during analysis. 
 
-Outputs: A Sankey diagram and a Heatmap diagram for the Wikipedia dataset, 4 Sankey Diagrams and 5 Heatmaps for the online shopping dataset
+Outputs: Data Visualizations- A Sankey diagram and a Heatmap diagram for the Wikipedia dataset, 4 Sankey Diagrams and 5 Heatmaps for the online shopping dataset. Analysis Visualizations- Two barcharts: one for each dataset. Two CSV files transition probabilties based on sequence modeling (Markov chains): one for each dataset.
 
 # Setup Instructions
 
