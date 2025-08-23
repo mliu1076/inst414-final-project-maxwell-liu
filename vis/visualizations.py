@@ -272,7 +272,7 @@ def generate_wikipedia_sankey(wikip_df):
         )])
 
         fig.update_layout(
-            title_text="Wikipedia Clickstream Navigation (first 100 rows, colored by type)",
+            title_text="Wikipedia Clickstream Navigation (first 50 rows, colored by type)",
             font_size=10
         )
         logging.info("Sankey diagram created successfully.")
@@ -334,8 +334,8 @@ def generate_wikipedia_heatmap(wikip_df, top_n=25):
 if __name__ == "__main__":
     try:
         # loads the first 100 rows of wikipedia dataset from Parquet
-        wikip_df = pd.read_parquet(PARQUET_PATH).head(100)
-        logging.info(f"First 100 rows loaded from {PARQUET_PATH}")
+        wikip_df = pd.read_parquet(PARQUET_PATH).head(50)
+        logging.info(f"First 50 rows loaded from {PARQUET_PATH}")
 
         # checks if columns are correctly named
         wikip_df.columns = ['prev', 'curr', 'type', 'n']

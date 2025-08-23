@@ -64,7 +64,9 @@ def main():
         return
 
     try:
-        generate_wikipedia_sankey(wikip_df)
+        # lowered scope to make sankey more readable
+        wikip_df_fifty = pd.read_parquet(wiki_parquet).head(50)
+        generate_wikipedia_sankey(wikip_df_fifty)
         logging.info("Wikipedia Sankey diagram generated successfully.")
     except Exception as e:
         logging.exception("Error generating Wikipedia Sankey diagram.")
