@@ -333,7 +333,7 @@ def generate_wikipedia_heatmap(wikip_df, top_n=25):
         raise
 if __name__ == "__main__":
     try:
-        # loads the first 100 rows of wikipedia dataset from Parquet
+        # loads the first 50 rows of wikipedia dataset from Parquet
         wikip_df = pd.read_parquet(PARQUET_PATH).head(50)
         logging.info(f"First 50 rows loaded from {PARQUET_PATH}")
 
